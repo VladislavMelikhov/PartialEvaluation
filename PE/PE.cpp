@@ -3,10 +3,35 @@
 
 #include "pch.h"
 #include <iostream>
+#include <vector>
+#include <fstream>
+#include <iostream>
+#include "KRecord.h"
+
+
+typedef std::vector<KRecord> Records;
+
+void inputRecordsFromFile(Records & records) {
+	
+	std::ifstream fin("../PE/input/Records.txt");
+
+	KRecord record = KRecord();
+	while (fin >> record) {
+		records.push_back(record);
+	}
+}
+
+void outputRecords(Records const& records) {
+	for (KRecord const& record : records) {
+		std::cout << record << std::endl;
+	}
+}
 
 int main()
 {
-    std::cout << "Hello World!\n"; 
+	Records records = Records();
+	inputRecordsFromFile(records);
+	outputRecords(records); 
 }
 
 // Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
