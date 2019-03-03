@@ -34,6 +34,11 @@ int KRecord::compare(KRecord const & other) const
 	return 5;
 }
 
+int const & KRecord::getValue() const
+{
+	return value;
+}
+
 std::ostream& operator<<(std::ostream& os, KRecord const& record)
 {
 	return os << "("

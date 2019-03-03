@@ -7,6 +7,7 @@
 #include <fstream>
 #include <iostream>
 #include "KRecord.h"
+#include "Traversal.h"
 
 
 typedef std::vector<KRecord> Records;
@@ -32,6 +33,8 @@ int main()
 	Records records = Records();
 	inputRecordsFromFile(records);
 	outputRecords(records); 
+
+	performTraversal(records, 4);
 }
 
 // Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"

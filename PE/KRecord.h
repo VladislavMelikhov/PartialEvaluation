@@ -21,6 +21,8 @@ public:
 
 	int compare(KRecord const& other) const;
 
+	int const& getValue() const;
+
 private:
 	int key1;
 	int key2;
