@@ -151,6 +151,7 @@
     <ClInclude Include="KVertex.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Traversal.h" />
+    <ClInclude Include="TuplePrinter.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="KRecord.cpp" />

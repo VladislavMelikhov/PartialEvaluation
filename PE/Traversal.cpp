@@ -62,7 +62,7 @@ void performTraversal(
 			sum[vertex.getLevel() + 1] = 0;
 			if (vertex.getLevel() == k) {
 				currentRecord = nextRecord;
-				vertex.setIndex(vertex.getIndex() + 1);
+				//vertex.setIndex(vertex.getIndex() + 1);
 				vertex.setRecord(nextRecord);
 			}
 			else {

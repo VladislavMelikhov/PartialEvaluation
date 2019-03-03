@@ -8,7 +8,9 @@
 #include <iostream>
 #include "KRecord.h"
 #include "Traversal.h"
-
+#include <tuple>
+#include <string>
+#include "TuplePrinter.h"
 
 typedef std::vector<KRecord> Records;
 
@@ -30,11 +32,15 @@ void outputRecords(Records const& records) {
 
 int main()
 {
-	Records records = Records();
-	inputRecordsFromFile(records);
-	outputRecords(records); 
+	//Records records = Records();
+	//inputRecordsFromFile(records);
+	//outputRecords(records); 
 
-	performTraversal(records, 4);
+	//performTraversal(records, 4);
+
+	typedef std::tuple<int, int, double> Tuple;
+	Tuple tuple = std::make_tuple(4, 3, 1.1);
+	printTuple(tuple);
 }
 
 // Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
