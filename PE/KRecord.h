@@ -23,6 +23,10 @@ public:
 
 	int const& getValue() const;
 
+	bool operator != (KRecord const& other) const;
+
+	bool operator == (KRecord const& other) const;
+
 private:
 	int key1;
 	int key2;

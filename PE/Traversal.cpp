@@ -73,7 +73,7 @@ void performTraversal(
 }
 
 void performTraversal(
-	std::vector<KRecord> const & records, 
+	std::vector<KRecord> const& records, 
 	const int height) {
 	
 	int sum[5];

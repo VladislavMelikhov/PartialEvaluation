@@ -11,36 +11,27 @@
 #include <tuple>
 #include <string>
 #include "TuplePrinter.h"
-
-typedef std::vector<KRecord> Records;
-
-void inputRecordsFromFile(Records & records) {
-	
-	std::ifstream fin("../PE/input/Records.txt");
-
-	KRecord record = KRecord();
-	while (fin >> record) {
-		records.push_back(record);
-	}
-}
-
-void outputRecords(Records const& records) {
-	for (KRecord const& record : records) {
-		std::cout << record << std::endl;
-	}
-}
+#include "KFile.h"
 
 int main()
 {
-	//Records records = Records();
-	//inputRecordsFromFile(records);
-	//outputRecords(records); 
+	KFile file = KFile("../PE/input/Records.txt");
+	//std::cout << file;
+
+	KSumIterator& it = file.beginSum();
+	KSumIterator const& end = file.endSum();
+
+	for (; it != end; ++it) {
+		std::cout << "!" << std::endl;
+	}
+	
+	std::cout << it.getResult() << ":)" << std::endl;
 
 	//performTraversal(records, 4);
 
-	typedef std::tuple<int, int, double> Tuple;
-	Tuple tuple = std::make_tuple(4, 3, 1.1);
-	printTuple(tuple);
+	//typedef std::tuple<int, int, double> Tuple;
+	//Tuple tuple = std::make_tuple(4, 3, 1.1);
+	//printTuple(tuple);
 }
 
 // Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"

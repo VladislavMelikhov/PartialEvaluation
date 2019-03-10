@@ -39,6 +39,25 @@ int const & KRecord::getValue() const
 	return value;
 }
 
+bool KRecord::operator!=(KRecord const& other) const
+{
+	return !(*this == other);
+}
+
+bool KRecord::operator==(KRecord const& other) const
+{
+	if (&other == nullptr) {
+		return false;
+	}
+	else {
+		return 
+			(key1 == other.key1) &&
+			(key2 == other.key2) &&
+			(key3 == other.key3) &&
+			(value == other.value);
+	}
+}
+
 std::ostream& operator<<(std::ostream& os, KRecord const& record)
 {
 	return os << "("
@@ -49,7 +68,7 @@ std::ostream& operator<<(std::ostream& os, KRecord const& record)
 		<< ")";
 }
 
-std::istream& operator>>(std::istream& is, KRecord & record)
+std::istream& operator>>(std::istream& is, KRecord& record)
 {
 	char spacing = '_';
 	return is >> spacing 

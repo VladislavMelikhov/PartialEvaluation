@@ -147,13 +147,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="KFile.h" />
     <ClInclude Include="KRecord.h" />
     <ClInclude Include="KVertex.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="KPostIterator.h" />
+    <ClInclude Include="KSumIterator.h" />
     <ClInclude Include="Traversal.h" />
     <ClInclude Include="TuplePrinter.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="KFIle.cpp" />
     <ClCompile Include="KRecord.cpp" />
     <ClCompile Include="KVertex.cpp" />
     <ClCompile Include="pch.cpp">
@@ -163,6 +167,8 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="PE.cpp" />
+    <ClCompile Include="KPostIterator.cpp" />
+    <ClCompile Include="KSumIterator.cpp" />
     <ClCompile Include="Traversal.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

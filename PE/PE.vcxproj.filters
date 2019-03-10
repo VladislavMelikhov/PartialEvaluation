@@ -30,6 +30,15 @@
     <ClInclude Include="TuplePrinter.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
+    <ClInclude Include="KFile.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="KSumIterator.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="KPostIterator.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -45,6 +54,15 @@
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="KVertex.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="KFIle.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="KSumIterator.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="KPostIterator.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
