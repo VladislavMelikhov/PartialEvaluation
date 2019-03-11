@@ -85,3 +85,8 @@ void performTraversal(
 		std::cout << i << " : " << sum[i] << std::endl;
 	}
 }
+
+void performTraversal(KStorage const& storage)
+{
+	
+}

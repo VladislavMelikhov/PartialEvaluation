@@ -149,6 +149,10 @@
   <ItemGroup>
     <ClInclude Include="KFile.h" />
     <ClInclude Include="KRecord.h" />
+    <ClInclude Include="KStorage.h" />
+    <ClInclude Include="KTFile.h" />
+    <ClInclude Include="KTRecord.h" />
+    <ClInclude Include="KTVertex.h" />
     <ClInclude Include="KVertex.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="KPostIterator.h" />

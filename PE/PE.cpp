@@ -12,20 +12,33 @@
 #include <string>
 #include "TuplePrinter.h"
 #include "KFile.h"
+#include "KTFile.h"
 
 int main()
 {
 	KFile file = KFile("../PE/input/Records.txt");
 	//std::cout << file;
 
-	KSumIterator& it = file.beginSum();
-	KSumIterator const& end = file.endSum();
+	//KSumIterator& it = file.beginSum();
+	//KSumIterator const& end = file.endSum();
 
-	for (; it != end; ++it) {
-		std::cout << "!" << std::endl;
-	}
-	
-	std::cout << it.getResult() << ":)" << std::endl;
+	//for (; it != end; ++it) {
+	//	std::cout << "!" << std::endl;
+	//}
+
+	KTFile<1> f1 = KTFile<1>("../PE/input/F1.txt");
+	KTFile<2> f2 = KTFile<2>("../PE/input/F2.txt");
+	KTFile<3> f3 = KTFile<3>("../PE/input/F3.txt");
+
+	std::cout << f1;
+	std::cout << f2;
+	std::cout << f3;
+
+	std::tuple<int, double> t = std::make_tuple(1, 2.2);
+	printTuple(t);
+	std::get<0>(t) = 12;
+	printTuple(t);
+	//std::cout << it.getResult() << ":)" << std::endl;
 
 	//performTraversal(records, 4);
 
