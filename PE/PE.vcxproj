@@ -163,6 +163,10 @@
   <ItemGroup>
     <ClCompile Include="KFIle.cpp" />
     <ClCompile Include="KRecord.cpp" />
+    <ClCompile Include="KStorage.cpp" />
+    <ClCompile Include="KTFile.cpp" />
+    <ClCompile Include="KTRecord.cpp" />
+    <ClCompile Include="KTVertex.cpp" />
     <ClCompile Include="KVertex.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

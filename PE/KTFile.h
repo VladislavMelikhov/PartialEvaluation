@@ -3,42 +3,19 @@
 #include <vector>
 #include "KTRecord.h"
 
-template <int N>
 class KTFile
 {
 public:
-	explicit KTFile(std::string const filename);
+	explicit KTFile(std::string const filename, int const n);
 
 	~KTFile();
 
-	template <int T>
-	friend std::ostream& operator << (std::ostream& os, KTFile<T> const& file);
+	friend std::ostream& operator << (std::ostream& os, KTFile const& file);
+
+	//KTFile& operator = (KTFile const& other);
 
 //TODO: records should be private
 
-	std::vector<KTRecord<N>> records;
+	std::vector<KTRecord> records;
+	int const n;
 };
-
-template<int T>
-inline std::ostream & operator<<(std::ostream& os, KTFile<T> const& file)
-{
-	for (KTRecord<T> const& record : file.records) {
-		os << record << std::endl;
-	}
-	return os;
-}
-
-template<int N>
-inline KTFile<N>::KTFile(std::string const filename)
-{
-	std::ifstream fin(filename);
-	KTRecord<N> record = KTRecord<N>();
-	while (fin >> record) {
-		records.push_back(record);
-	}
-}
-
-template<int N>
-inline KTFile<N>::~KTFile()
-{
-}

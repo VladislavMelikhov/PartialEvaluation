@@ -13,6 +13,7 @@
 #include "TuplePrinter.h"
 #include "KFile.h"
 #include "KTFile.h"
+#include "KStorage.h"
 
 int main()
 {
@@ -26,13 +27,22 @@ int main()
 	//	std::cout << "!" << std::endl;
 	//}
 
-	KTFile<1> f1 = KTFile<1>("../PE/input/F1.txt");
-	KTFile<2> f2 = KTFile<2>("../PE/input/F2.txt");
-	KTFile<3> f3 = KTFile<3>("../PE/input/F3.txt");
+	KTFile f1 = KTFile("../PE/input/F1.txt", 1);
+	KTFile f2 = KTFile("../PE/input/F2.txt", 2);
+	KTFile f3 = KTFile("../PE/input/F3.txt", 3);
 
 	std::cout << f1;
 	std::cout << f2;
 	std::cout << f3;
+
+	std::vector<KTFile> files = std::vector<KTFile>();
+	files.push_back(f1);
+	files.push_back(f2);
+	files.push_back(f3);
+
+	KStorage storage = KStorage(files);
+
+	performTraversal(storage);
 
 	std::tuple<int, double> t = std::make_tuple(1, 2.2);
 	printTuple(t);

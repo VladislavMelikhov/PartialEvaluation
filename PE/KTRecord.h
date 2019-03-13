@@ -2,51 +2,22 @@
 
 #include <iostream>
 
-template <int N>
 class KTRecord {
 public:
-	KTRecord();
+	explicit KTRecord(int const n);
 
 	~KTRecord();
 
-	template <int T>
-	friend std::ostream& operator << (std::ostream& os, KTRecord<T> const& record);
+	KTRecord(KTRecord const& other);
 
-	template <int T>
-	friend std::istream& operator >> (std::istream& is, KTRecord<T>& record);
+	friend std::ostream& operator << (std::ostream& os, KTRecord const& record);
+
+	friend std::istream& operator >> (std::istream& is, KTRecord& record);
+
+	int compare(KTRecord const& other) const;
 
 private:
-	int keys[N];
+	int const n;
+	int* const keys;
 	int value;
 };
-
-template<int N>
-inline KTRecord<N>::KTRecord()
-{
-}
-
-template<int N>
-inline KTRecord<N>::~KTRecord()
-{
-}
-
-template<int N>
-inline std::ostream& operator << (std::ostream& os, KTRecord<N> const& record) {
-	os << "(";
-	for (int i = 0; i < N; ++i) {
-		os << record.keys[i] << ", ";
-	}
-	os << record.value << ")";
-	return os;
-}
-
-template<int N>
-inline std::istream& operator >> (std::istream& is, KTRecord<N>& record) {
-	char spacing = '_';
-	is >> spacing;
-	for (int i = 0; i < N; ++i) {
-		is >> record.keys[i] >> spacing;
-	}
-	is >> record.value >> spacing;
-	return is;
-}

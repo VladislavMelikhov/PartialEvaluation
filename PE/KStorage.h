@@ -8,7 +8,9 @@ class KStorage {
 	//}
 
 //TODO: files should be private
-	KTFile<1> f1;
-	KTFile<2> f2;
-	KTFile<3> f3;
+public:
+
+	explicit KStorage(std::vector<KTFile> const& files);
+
+	std::vector<KTFile> files;
 };
