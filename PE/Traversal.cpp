@@ -97,7 +97,7 @@ void performTraversal(KStorage const& storage)
 
 
 	std::vector<KTFile>::const_iterator iterator = storage.files.begin();
-	std::vector<KTFile>::const_iterator end = --storage.files.end();
+	std::vector<KTFile>::const_iterator end = storage.files.end();
 
 	for (KTFile file : storage.files) {
 		std::cout << file;
@@ -120,12 +120,11 @@ void performTraversal(KStorage const& storage)
 	while (true) {
 		while (vertex.getLevel() <= height) {
 			currentRecord = &(*iterators[vertex.getLevel()]);
+			vertex.setRecord(currentRecord);
 			std::cout << "Debug: " << *currentRecord << std::endl;
 			stack.push(vertex);
 			++iterators[vertex.getLevel()];
 			vertex.setLevel(vertex.getLevel() + 1);
-			vertex.setRecord(currentRecord);
-			
 		}
 		if (stack.empty()) {
 			break;
@@ -139,11 +138,11 @@ void performTraversal(KStorage const& storage)
 			//	.getRecord()
 			//	.getValue();
 
-			if (iterators[height - 1] == ends[height - 1]) {
+			if (iterators[height] == ends[height]) {
 				vertex.setLevel(height + 1);
 			}
 			else {
-				nextRecord = &(*(++iterators[height - 1]));
+				nextRecord = &(*(++iterators[height]));
 				k = (*currentRecord).compare(*nextRecord);
 
 				if (k == height) {
