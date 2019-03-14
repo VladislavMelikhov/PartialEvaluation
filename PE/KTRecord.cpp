@@ -28,7 +28,7 @@ int KTRecord::compare(KTRecord const& other) const
 {
 	for (int i = 0; i < min(n, other.n); ++i) {
 		if (keys[i] != other.keys[i]) {
-			return i + 1;
+			return i;
 		}
 	}
 	return 0;
