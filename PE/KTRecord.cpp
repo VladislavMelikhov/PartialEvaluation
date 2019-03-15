@@ -34,6 +34,21 @@ int KTRecord::compare(KTRecord const& other) const
 	return 0;
 }
 
+int* const KTRecord::getKeys() const
+{
+	return keys;
+}
+
+int const& KTRecord::getN() const
+{
+	return n;
+}
+
+int const& KTRecord::getValue() const
+{
+	return value;
+}
+
 std::ostream& operator << (std::ostream& os, KTRecord const& record) {
 	os << "(";
 	for (int i = 0; i < record.n; ++i) {

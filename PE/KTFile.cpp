@@ -22,3 +22,8 @@ KTFile::KTFile(std::string const filename, int const n) : n(n)
 KTFile::~KTFile()
 {
 }
+
+TRecords const & KTFile::getRecords() const
+{
+	return records;
+}

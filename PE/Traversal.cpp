@@ -90,24 +90,26 @@ void performTraversal(
 
 void performTraversal(KStorage const& storage)
 {
-	typedef std::vector<std::vector<KTRecord>::const_iterator> RecordsIterators;
-	typedef std::vector<KTFile>::const_iterator FilesIterator;
+	typedef std::vector<TRecords::const_iterator> RecordsIterators;
+	typedef TFiles::const_iterator FilesIterator;
 
 	KTVertex vertex = KTVertex();
 	std::stack<KTVertex> stack = std::stack<KTVertex>();
 	RecordsIterators iterators = RecordsIterators();
 	RecordsIterators ends = RecordsIterators();
 
-	FilesIterator iterator = storage.files.begin();
-	FilesIterator end = storage.files.end();
+	TFiles const& files = storage.getFiles();
+	FilesIterator iterator = files.begin();
+	FilesIterator end = files.end();
 
-	for (KTFile file : storage.files) {
+	for (KTFile const& file : files) {
 		std::cout << file;
 	};
 	
 	for (; iterator != end; ++iterator) {
-		iterators.push_back((*iterator).records.begin());
-		ends.push_back((*iterator).records.end());
+		TRecords const& records = (*iterator).getRecords();
+		iterators.push_back(records.begin());
+		ends.push_back(records.end());
 	}
 
 	int const height = iterators.size() - 1;

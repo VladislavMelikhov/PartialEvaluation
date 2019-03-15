@@ -151,6 +151,8 @@
     <ClInclude Include="KRecord.h" />
     <ClInclude Include="KStorage.h" />
     <ClInclude Include="KTFile.h" />
+    <ClInclude Include="KTLinkIterator.h" />
+    <ClInclude Include="KTPostIterator.h" />
     <ClInclude Include="KTRecord.h" />
     <ClInclude Include="KTVertex.h" />
     <ClInclude Include="KVertex.h" />
@@ -165,6 +167,8 @@
     <ClCompile Include="KRecord.cpp" />
     <ClCompile Include="KStorage.cpp" />
     <ClCompile Include="KTFile.cpp" />
+    <ClCompile Include="KTLinkIterator.cpp" />
+    <ClCompile Include="KTPostIterator.cpp" />
     <ClCompile Include="KTRecord.cpp" />
     <ClCompile Include="KTVertex.cpp" />
     <ClCompile Include="KVertex.cpp" />

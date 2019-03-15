@@ -13,6 +13,8 @@ public:
 
 	void setRecord(KTRecord const* value);
 
+	KTRecord const& getRecord() const;
+
 	friend std::ostream& operator << (std::ostream& os, KTVertex const& vertex);
 
 private:

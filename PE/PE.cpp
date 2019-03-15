@@ -13,7 +13,7 @@
 #include "TuplePrinter.h"
 #include "KFile.h"
 #include "KTFile.h"
-#include "KStorage.h"
+#include "KTLinkIterator.h"
 
 int main()
 {
@@ -42,7 +42,14 @@ int main()
 
 	KStorage storage = KStorage(files);
 
-	performTraversal(storage);
+	//performTraversal(storage);
+
+	KTLinkIterator& it = storage.beginLink();
+	KTLinkIterator const& end = storage.endLink();
+
+	for (; it != end; ++it) {
+		std::cout << "!";
+	}
 
 	std::tuple<int, double> t = std::make_tuple(1, 2.2);
 	printTuple(t);

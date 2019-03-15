@@ -3,6 +3,8 @@
 #include <vector>
 #include "KTRecord.h"
 
+typedef std::vector<KTRecord> TRecords;
+
 class KTFile
 {
 public:
@@ -14,8 +16,9 @@ public:
 
 	//KTFile& operator = (KTFile const& other);
 
-//TODO: records should be private
+	TRecords const& getRecords() const;
 
-	std::vector<KTRecord> records;
+private:
+	TRecords records;
 	int const n;
 };

@@ -20,6 +20,11 @@ void KTVertex::setRecord(KTRecord const* value)
 	record = value;
 }
 
+KTRecord const& KTVertex::getRecord() const
+{
+	return *record;
+}
+
 std::ostream & operator<<(std::ostream& os, KTVertex const& vertex)
 {
 	os << "(" << vertex.level;

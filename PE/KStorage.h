@@ -1,16 +1,18 @@
 #pragma once
 #include "KTFile.h"
+#include "KTLinkIterator.h"
+
+typedef std::vector<KTFile> TFiles;
 
 class KStorage {
-
-	//getNextRecord(int level) {
-
-	//}
-
-//TODO: files should be private
 public:
+	explicit KStorage(TFiles const& files);
 
-	explicit KStorage(std::vector<KTFile> const& files);
+	TFiles const& getFiles() const;
 
-	std::vector<KTFile> files;
+	KTLinkIterator beginLink();
+	KTLinkIterator endLink();
+
+private:
+	TFiles files;
 };

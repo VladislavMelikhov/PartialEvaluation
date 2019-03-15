@@ -16,6 +16,12 @@ public:
 
 	int compare(KTRecord const& other) const;
 
+	int* const getKeys() const;
+
+	int const& getN() const;
+
+	int const& getValue() const;
+
 private:
 	int const n;
 	int* const keys;
