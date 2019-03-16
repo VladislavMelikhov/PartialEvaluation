@@ -1,32 +1,19 @@
 #pragma once
-#include "KVertex.h"
-#include <stack>
-#include <vector>
+#include "KTBasePostIterator.h"
 
-typedef std::stack<KVertex> VertexesStack;
-typedef std::vector<KRecord> Records;
-typedef Records::const_iterator Iterator;
+typedef std::vector<KTRecord> TRecords;
+typedef TRecords::const_iterator Iterator;
 
-class KPostIterator {
+class KPostIterator : public KTBasePostIterator {
 public:
-	explicit KPostIterator(Records const& records, int const treeHeight);
+	explicit KPostIterator(TRecords const& records, int const treeHeight);
 	virtual ~KPostIterator();
-	KPostIterator& operator ++ ();
-	bool operator != (KPostIterator const& other) const;
 	
-protected:
-	virtual void onNext(KRecord const& record) = 0;
-	virtual void onBranch(int const level) = 0;
-	int const& getTreeHeight();
-
 private:
-	KVertex vertex;
-	VertexesStack stack;
+	void onPush(int const& level);
+	bool isEndOfSource() const;
+	KTRecord const& readNext() const;
+
 	Iterator iterator;
 	Iterator const end;
-
-	KRecord const* currentRecord;
-	KRecord const* nextRecord;
-	int const treeHeight;
-	int branchHeight;
 };

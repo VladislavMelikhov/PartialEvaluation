@@ -1,5 +1,6 @@
 #pragma once
 #include "KTBasePostIterator.h"
+#include "KTFile.h"
 
 typedef std::stack<KTVertex> TVertexesStack;
 typedef std::vector<TRecords::const_iterator> RecordsIterators;

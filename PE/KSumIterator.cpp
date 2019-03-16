@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "KSumIterator.h"
 
-KSumIterator::KSumIterator(Records const& records, int const treeHeight) :
+KSumIterator::KSumIterator(TRecords const& records, int const treeHeight) :
 	KPostIterator(records, treeHeight),
 	sum(new int[treeHeight + 1])
 {
@@ -20,12 +20,12 @@ int const& KSumIterator::getResult()
 	return sum[0];
 }
 
-void KSumIterator::onNext(KRecord const& record) {
+void KSumIterator::onNext(KTRecord const& record) const {
 	std::cout << record << std::endl;
 	sum[getTreeHeight()] += record.getValue();
 }
 
-void KSumIterator::onBranch(int const level) {
+void KSumIterator::onBranch(int const& level) const {
 	int const nextLevel = level + 1;
 
 	sum[level] += sum[nextLevel];

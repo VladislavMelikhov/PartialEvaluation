@@ -1,14 +1,9 @@
 #pragma once
-#pragma once
 #include "KTVertex.h"
-#include "KTFile.h"
 #include <stack>
 #include <vector>
 
 typedef std::stack<KTVertex> TVertexesStack;
-typedef std::vector<TRecords::const_iterator> RecordsIterators;
-typedef std::vector<KTFile> TFiles;
-typedef TFiles::const_iterator FilesIterator;
 
 class KTBasePostIterator {
 public:

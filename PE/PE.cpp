@@ -15,18 +15,19 @@
 #include "KTFile.h"
 #include "KTLinkIterator.h"
 
-int main()
-{
-	KFile file = KFile("../PE/input/Records.txt");
-	//std::cout << file;
+void testSingleFileIterator() {
+	KTFile file = KTFile("../PE/input/Records.txt", 3);
+	std::cout << file;
 
-	//KSumIterator& it = file.beginSum();
-	//KSumIterator const& end = file.endSum();
+	KSumIterator& it = file.beginSum();
+	KSumIterator const& end = file.endSum();
 
-	//for (; it != end; ++it) {
-	//	std::cout << "!" << std::endl;
-	//}
+	for (; it != end; ++it) {
+		std::cout << "!" << std::endl;
+	}
+}
 
+void testMultipleFilesIterator() {
 	KTFile f1 = KTFile("../PE/input/F1.txt", 1);
 	KTFile f2 = KTFile("../PE/input/F2.txt", 2);
 	KTFile f3 = KTFile("../PE/input/F3.txt", 3);
@@ -51,10 +52,15 @@ int main()
 		for (; it != end; ++it) {
 			std::cout << "!";
 		}
-	} 
+	}
 	catch (std::logic_error const& e) {
 		std::cout << e.what();
 	}
+}
+
+int main()
+{
+	testSingleFileIterator();
 
 	std::tuple<int, double> t = std::make_tuple(1, 2.2);
 	printTuple(t);

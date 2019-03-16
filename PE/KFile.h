@@ -15,8 +15,8 @@ public:
 
 	friend std::ostream& operator << (std::ostream& os, KFile const& file);
 
-	KSumIterator beginSum();
-	KSumIterator endSum();
+	//KSumIterator beginSum();
+	//KSumIterator endSum();
 
 private:
 	

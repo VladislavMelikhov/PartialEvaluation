@@ -15,15 +15,15 @@ KFile::~KFile()
 {
 }
 
-KSumIterator KFile::beginSum()
-{
-	return dynamic_cast<KSumIterator&>(++KSumIterator(records, 4));
-}
-
-KSumIterator KFile::endSum()
-{
-	return KSumIterator(records, 4);
-}
+//KSumIterator KFile::beginSum()
+//{
+//	return dynamic_cast<KSumIterator&>(++KSumIterator(records, 4));
+//}
+//
+//KSumIterator KFile::endSum()
+//{
+//	return KSumIterator(records, 4);
+//}
 
 std::ostream& operator<<(std::ostream& os, KFile const& file)
 {

@@ -23,6 +23,16 @@ KTFile::~KTFile()
 {
 }
 
+KSumIterator KTFile::beginSum()
+{
+	return dynamic_cast<KSumIterator&>(++KSumIterator(records, n + 1));
+}
+
+KSumIterator KTFile::endSum()
+{
+	return KSumIterator(records, n + 1);
+}
+
 TRecords const & KTFile::getRecords() const
 {
 	return records;

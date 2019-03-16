@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include "KTRecord.h"
+#include "KSumIterator.h"
 
 typedef std::vector<KTRecord> TRecords;
 
@@ -15,6 +16,9 @@ public:
 	friend std::ostream& operator << (std::ostream& os, KTFile const& file);
 
 	//KTFile& operator = (KTFile const& other);
+
+	KSumIterator beginSum();
+	KSumIterator endSum();
 
 	TRecords const& getRecords() const;
 
