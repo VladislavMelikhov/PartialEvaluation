@@ -1,32 +1,20 @@
 #pragma once
-#include "KTVertex.h"
-#include "KTFile.h"
-#include <stack>
-#include <vector>
+#include "KTBasePostIterator.h"
 
 typedef std::stack<KTVertex> TVertexesStack;
 typedef std::vector<TRecords::const_iterator> RecordsIterators;
 typedef std::vector<KTFile> TFiles;
 typedef TFiles::const_iterator FilesIterator;
 
-class KTPostIterator {
+class KTPostIterator : public KTBasePostIterator {
 public:
 	explicit KTPostIterator(TFiles const& files);
-	virtual ~KTPostIterator();
-	KTPostIterator& operator ++ ();
-	bool operator != (KTPostIterator const& other) const;
 
-protected:
-	virtual void onNext(KTRecord const& record) = 0;
-	TVertexesStack const& getStack() const;
 private:
-	KTVertex vertex;
-	TVertexesStack stack;
+	void onPush(int const& level);
+	bool isEndOfSource() const;
+	KTRecord const& readNext() const;
+
 	RecordsIterators iterators;
 	RecordsIterators ends;
-
-	KTRecord const* currentRecord;
-	KTRecord const* nextRecord;
-	int const treeHeight;
-	int branchHeight;
 };

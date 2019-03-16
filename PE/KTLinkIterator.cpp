@@ -54,7 +54,7 @@ void validateRecordsChain(KTRecord const& record, TVertexesStack vertexesStack) 
 	}
 }
 
-void KTLinkIterator::onNext(KTRecord const& record)
+void KTLinkIterator::onNext(KTRecord const& record) const
 {	
 	TVertexesStack const& stack = getStack();
 
@@ -71,4 +71,8 @@ void KTLinkIterator::onNext(KTRecord const& record)
 	}
 
 	std::cout << ", " << record.getValue() << ")" << std::endl;
+}
+
+void KTLinkIterator::onBranch(int const & level) const
+{
 }

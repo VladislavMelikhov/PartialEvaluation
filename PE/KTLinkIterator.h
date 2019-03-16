@@ -7,5 +7,6 @@ public:
 	KTLinkIterator(TFiles const& files);
 	~KTLinkIterator();
 private:
-	void onNext(KTRecord const& record);
+	void onNext(KTRecord const& record) const;
+	void onBranch(int const& level) const;
 };
