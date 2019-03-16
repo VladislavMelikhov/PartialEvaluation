@@ -47,8 +47,13 @@ int main()
 	KTLinkIterator& it = storage.beginLink();
 	KTLinkIterator const& end = storage.endLink();
 
-	for (; it != end; ++it) {
-		std::cout << "!";
+	try {
+		for (; it != end; ++it) {
+			std::cout << "!";
+		}
+	} 
+	catch (std::logic_error const& e) {
+		std::cout << e.what();
 	}
 
 	std::tuple<int, double> t = std::make_tuple(1, 2.2);

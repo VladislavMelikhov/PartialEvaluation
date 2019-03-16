@@ -49,6 +49,22 @@ int const& KTRecord::getValue() const
 	return value;
 }
 
+bool const KTRecord::containsKey(KTRecord const& other) const
+{
+	int const other_n = other.n;
+	if (other_n > n) {
+		return false;
+	}
+	else {
+		for (int i = 0; i < other_n; ++i) {
+			if (keys[i] != other.keys[i]) {
+				return false;
+			}
+		}
+		return true;
+	}
+}
+
 std::ostream& operator << (std::ostream& os, KTRecord const& record) {
 	os << "(";
 	for (int i = 0; i < record.n; ++i) {

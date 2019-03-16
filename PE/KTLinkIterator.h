@@ -1,5 +1,6 @@
 #pragma once
 #include "KTPostIterator.h"
+#include <stdexcept>
 
 class KTLinkIterator : public KTPostIterator {
 public:

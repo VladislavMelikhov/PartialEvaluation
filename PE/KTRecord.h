@@ -22,6 +22,8 @@ public:
 
 	int const& getValue() const;
 
+	bool const containsKey(KTRecord const& other) const;
+
 private:
 	int const n;
 	int* const keys;

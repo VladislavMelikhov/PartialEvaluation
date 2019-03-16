@@ -81,7 +81,7 @@ bool KTPostIterator::operator!=(KTPostIterator const& other) const
 	KTRecord const& record = vertex.getRecord();
 	KTRecord const& otherRecord = other.vertex.getRecord();
 
-	if (&record == nullptr && &other == nullptr) {
+	if (&record == nullptr && &otherRecord == nullptr) {
 		return false;
 	}
 	else {
@@ -89,7 +89,7 @@ bool KTPostIterator::operator!=(KTPostIterator const& other) const
 	}
 }
 
-TVertexesStack const & KTPostIterator::getStack() const
+TVertexesStack const& KTPostIterator::getStack() const
 {
 	return stack;
 }
