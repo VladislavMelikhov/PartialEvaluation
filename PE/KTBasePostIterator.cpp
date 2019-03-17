@@ -40,7 +40,7 @@ KTBasePostIterator& KTBasePostIterator::operator++()
 			}
 			else {
 				nextRecord = &readNext();
-				branchHeight = (*currentRecord).compare(*nextRecord);
+				branchHeight = getBranchHeight(*currentRecord, *nextRecord);
 
 				if (branchHeight == treeHeight) {
 					currentRecord = nextRecord;
@@ -80,6 +80,11 @@ bool KTBasePostIterator::operator!=(KTBasePostIterator const& other) const
 		//TODO: compare records!
 		return true;
 	}
+}
+
+int const KTBasePostIterator::getBranchHeight(KTRecord const& first, KTRecord const& second) const
+{
+	return first.compare(second);
 }
 
 TVertexesStack const& KTBasePostIterator::getStack() const

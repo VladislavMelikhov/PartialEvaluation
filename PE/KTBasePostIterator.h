@@ -18,6 +18,8 @@ protected:
 	virtual void onBranch(int const& level) const = 0;
 	virtual bool isEndOfSource() const = 0;
 	virtual KTRecord const& readNext() const = 0;
+	
+	virtual int const getBranchHeight(KTRecord const& first, KTRecord const& second) const;
 
 	TVertexesStack const& getStack() const;
 	int const& getTreeHeight() const;

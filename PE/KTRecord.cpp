@@ -26,12 +26,16 @@ int const& min(int const& a, int const& b) {
 
 int KTRecord::compare(KTRecord const& other) const
 {
-	for (int i = 0; i < min(n, other.n); ++i) {
+	int const min_n = min(n, other.n);
+	for (int i = 0; i < min_n; ++i) {
 		if (keys[i] != other.keys[i]) {
 			return i;
 		}
 	}
-	return 0;
+	if (value != other.value) {
+		return min_n;
+	}
+	return min_n + 1;
 }
 
 int* const KTRecord::getKeys() const

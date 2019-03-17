@@ -4,7 +4,7 @@
 KPostIterator::KPostIterator(TRecords const& records, int const treeHeight) :
 	KTBasePostIterator(treeHeight),
 	iterator(records.begin()),
-	end(--records.end())
+	end(records.end())
 {
 	setCurrentRecord(*iterator);
 }
@@ -15,7 +15,7 @@ KPostIterator::~KPostIterator()
 
 void KPostIterator::onPush(int const& level)
 {
-	if (level == getTreeHeight()) {
+	if (level == getTreeHeight() && !isEndOfSource()) {
 		++iterator;
 	}
 }
@@ -28,4 +28,9 @@ bool KPostIterator::isEndOfSource() const
 KTRecord const& KPostIterator::readNext() const
 {
 	return *iterator;
+}
+
+int const KPostIterator::getBranchHeight(KTRecord const& first, KTRecord const& second) const
+{
+	return KTBasePostIterator::getBranchHeight(first, second) + 1;
 }

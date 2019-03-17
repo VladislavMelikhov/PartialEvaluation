@@ -13,6 +13,7 @@ private:
 	void onPush(int const& level);
 	bool isEndOfSource() const;
 	KTRecord const& readNext() const;
+	int const getBranchHeight(KTRecord const& first, KTRecord const& second) const;
 
 	Iterator iterator;
 	Iterator const end;

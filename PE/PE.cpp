@@ -60,6 +60,7 @@ void testMultipleFilesIterator() {
 
 int main()
 {
+	testMultipleFilesIterator();
 	testSingleFileIterator();
 
 	std::tuple<int, double> t = std::make_tuple(1, 2.2);
