@@ -8,5 +8,5 @@ public:
 	~KTLinkIterator();
 private:
 	void onNext(KTRecord const& record) const;
-	void onBranch(int const& level) const;
+	void onBranch(int const& level, KTRecord const& record) const;
 };

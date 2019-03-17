@@ -53,7 +53,7 @@ KTBasePostIterator& KTBasePostIterator::operator++()
 			break;
 		}
 		else {
-			onBranch(vertex.getLevel());
+			onBranch(vertex.getLevel(), vertex.getRecord());
 
 			if (vertex.getLevel() == branchHeight) {
 				currentRecord = nextRecord;

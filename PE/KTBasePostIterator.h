@@ -16,7 +16,7 @@ public:
 protected:
 	virtual void onNext(KTRecord const& record) const = 0;
 	virtual void onPush(int const& level) = 0;
-	virtual void onBranch(int const& level) const = 0;
+	virtual void onBranch(int const& level, KTRecord const& record) const = 0;
 	virtual bool isEndOfSource() const = 0;
 	virtual KTRecord const& readNext() const = 0;
 	

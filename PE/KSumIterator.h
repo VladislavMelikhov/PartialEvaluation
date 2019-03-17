@@ -10,6 +10,6 @@ public:
 	int const& getResult();
 private:
 	void onNext(KTRecord const& record) const;
-	void onBranch(int const& level) const;
+	void onBranch(int const& level, KTRecord const& record) const;
 	int *const sum;
 };

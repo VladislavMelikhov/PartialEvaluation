@@ -16,18 +16,21 @@
 #include "KTLinkIterator.h"
 
 void testSingleFileIterator() {
+	std::cout << "Test single source: " << std::endl;
 	KTFile file = KTFile("../PE/input/Records.txt", 3);
 	std::cout << file;
 
+	std::cout << "Result: " << std::endl;
 	KSumIterator& it = file.beginSum();
 	KSumIterator const& end = file.endSum();
 
-	for (; it != end; ++it) {
-		std::cout << "!" << std::endl;
+	while (it != end) {
+		++it;
 	}
 }
 
 void testMultipleFilesIterator() {
+	std::cout << "Test multiple sources: " << std::endl;
 	KTFile f1 = KTFile("../PE/input/F1.txt", 1);
 	KTFile f2 = KTFile("../PE/input/F2.txt", 2);
 	KTFile f3 = KTFile("../PE/input/F3.txt", 3);
@@ -43,18 +46,17 @@ void testMultipleFilesIterator() {
 
 	KStorage storage = KStorage(files);
 
-	//performTraversal(storage);
-
+	std::cout << "Result: " << std::endl;
 	KTLinkIterator& it = storage.beginLink();
 	KTLinkIterator const& end = storage.endLink();
 
 	try {
-		for (; it != end; ++it) {
-			std::cout << "!";
+		while (it != end) { 
+			++it; 
 		}
 	}
 	catch (std::logic_error const& e) {
-		std::cout << e.what();
+		std::cout << e.what() << std::endl;
 	}
 }
 
@@ -63,10 +65,10 @@ int main()
 	testMultipleFilesIterator();
 	testSingleFileIterator();
 
-	std::tuple<int, double> t = std::make_tuple(1, 2.2);
-	printTuple(t);
-	std::get<0>(t) = 12;
-	printTuple(t);
+	//std::tuple<int, double> t = std::make_tuple(1, 2.2);
+	//printTuple(t);
+	//std::get<0>(t) = 12;
+	//printTuple(t);
 	//std::cout << it.getResult() << ":)" << std::endl;
 
 	//performTraversal(records, 4);

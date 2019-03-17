@@ -73,6 +73,6 @@ void KTLinkIterator::onNext(KTRecord const& record) const
 	std::cout << ", " << record.getValue() << ")" << std::endl;
 }
 
-void KTLinkIterator::onBranch(int const & level) const
+void KTLinkIterator::onBranch(int const& level, KTRecord const& record) const
 {
 }

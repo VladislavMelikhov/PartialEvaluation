@@ -29,15 +29,31 @@ int const& KSumIterator::getResult()
 	return sum[0];
 }
 
+
+void printKeys(bool const& recordSign, int const& level, KTRecord const& record) {
+	int* const keys = record.getKeys();
+	std::cout << "(" << recordSign << ", ";
+
+	int i = 0;
+	for (; i < level; ++i) {
+		std::cout << keys[i] << ", ";
+	}
+	for (; i < record.getN(); ++i) {
+		std::cout << "_ ,";
+	}
+}
+
 void KSumIterator::onNext(KTRecord const& record) const {
-	std::cout << record << std::endl;
+	printKeys(0, record.getN(), record);
+	std::cout << record.getValue() << ")" << std::endl;
 	sum[getTreeHeight()] += record.getValue();
 }
 
-void KSumIterator::onBranch(int const& level) const {
+void KSumIterator::onBranch(int const& level, KTRecord const& record) const {
+	printKeys(1, level, record);
 	int const nextLevel = level + 1;
 
 	sum[level] += sum[nextLevel];
-	std::cout << sum[nextLevel] << std::endl;
+	std::cout << sum[nextLevel] << ")" << std::endl;
 	sum[nextLevel] = 0;
 }
