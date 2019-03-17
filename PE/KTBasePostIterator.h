@@ -11,6 +11,7 @@ public:
 	virtual ~KTBasePostIterator();
 	KTBasePostIterator& operator ++ ();
 	bool operator != (KTBasePostIterator const& other) const;
+	KTBasePostIterator(KTBasePostIterator const& other);
 
 protected:
 	virtual void onNext(KTRecord const& record) const = 0;

@@ -82,6 +82,17 @@ bool KTBasePostIterator::operator!=(KTBasePostIterator const& other) const
 	}
 }
 
+KTBasePostIterator::KTBasePostIterator(KTBasePostIterator const& other):
+	vertex(other.vertex),
+	stack(other.stack),
+	currentRecord(other.currentRecord),
+	nextRecord(other.nextRecord),
+	treeHeight(other.treeHeight),
+	branchHeight(other.branchHeight)
+{
+	//TODO: correct copy constructor
+}
+
 int const KTBasePostIterator::getBranchHeight(KTRecord const& first, KTRecord const& second) const
 {
 	return first.compare(second);

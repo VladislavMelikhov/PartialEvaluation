@@ -11,7 +11,7 @@ KTRecord::~KTRecord()
 	delete[] keys;
 }
 
-KTRecord::KTRecord(KTRecord const & other) : n(other.n), keys(new int[other.n])
+KTRecord::KTRecord(KTRecord const& other) : n(other.n), keys(new int[other.n])
 {
 	for (int i = 0; i < n; ++i) {
 		keys[i] = other.keys[i];

@@ -13,6 +13,14 @@ KPostIterator::~KPostIterator()
 {
 }
 
+KPostIterator::KPostIterator(KPostIterator const& other) :
+	KTBasePostIterator(other),
+	iterator(other.iterator),
+	end(other.end)
+{
+	//TODO: correct copy constructor
+}
+
 void KPostIterator::onPush(int const& level)
 {
 	if (level == getTreeHeight() && !isEndOfSource()) {

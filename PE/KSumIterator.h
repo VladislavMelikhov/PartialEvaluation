@@ -5,6 +5,7 @@ class KSumIterator : public KPostIterator {
 public:
 	KSumIterator(TRecords const& records, int const treeHeight);
 	~KSumIterator();
+	KSumIterator(KSumIterator const& other);
 
 	int const& getResult();
 private:

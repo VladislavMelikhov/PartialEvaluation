@@ -8,6 +8,7 @@ class KPostIterator : public KTBasePostIterator {
 public:
 	explicit KPostIterator(TRecords const& records, int const treeHeight);
 	virtual ~KPostIterator();
+	KPostIterator(KPostIterator const& other);
 	
 private:
 	void onPush(int const& level);
