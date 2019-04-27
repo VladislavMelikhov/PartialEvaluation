@@ -60,6 +60,15 @@
     <ClInclude Include="KTBasePostIterator.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
+    <ClInclude Include="TRecord.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Key.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Split.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -105,6 +114,9 @@
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="KTBasePostIterator.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Split.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>

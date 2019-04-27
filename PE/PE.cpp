@@ -14,6 +14,9 @@
 #include "KFile.h"
 #include "KTFile.h"
 #include "KTLinkIterator.h"
+#include "Key.h"
+#include "TRecord.h"
+#include "Split.h"
 
 void testSingleFileIterator() {
 	std::cout << "Test single source: " << std::endl;
@@ -62,8 +65,17 @@ void testMultipleFilesIterator() {
 
 int main()
 {
-	testMultipleFilesIterator();
-	testSingleFileIterator();
+
+	Key<1, 2, 3> key = Key<1, 2, 3>();
+	TRecord<std::tuple<std::string, int, int, int>, Key<1, 2, 3>>;
+
+	Strings strings = split("Hello, world, 2019", ',');
+	for (std::string const& string : strings) {
+		std::cout << string << " ";
+	}
+
+	//testMultipleFilesIterator();
+	//testSingleFileIterator();
 
 	//std::tuple<int, double> t = std::make_tuple(1, 2.2);
 	//printTuple(t);
