@@ -1,8 +1,8 @@
 #include "pch.h"
-#include "Split.h"
+#include "Splitter.h"
 #include <sstream>
 
-Strings split(std::string const& splitable, char const& delim)
+Strings Splitter::split(std::string const& splitable, char const& delim)
 {
 	Strings strings = Strings();
 	std::string string = "";

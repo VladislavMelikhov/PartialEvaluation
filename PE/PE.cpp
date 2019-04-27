@@ -16,7 +16,8 @@
 #include "KTLinkIterator.h"
 #include "Key.h"
 #include "TRecord.h"
-#include "Split.h"
+#include "Splitter.h"
+#include "Converter.h"
 
 void testSingleFileIterator() {
 	std::cout << "Test single source: " << std::endl;
@@ -69,10 +70,13 @@ int main()
 	Key<1, 2, 3> key = Key<1, 2, 3>();
 	TRecord<std::tuple<std::string, int, int, int>, Key<1, 2, 3>>;
 
-	Strings strings = split("Hello, world, 2019", ',');
+	Strings strings = Splitter().split("Hello, world, 2019", ',');
 	for (std::string const& string : strings) {
 		std::cout << string << " ";
 	}
+
+	int x = Converter<int>().convert("56");
+	std::cout << x + 1;
 
 	//testMultipleFilesIterator();
 	//testSingleFileIterator();
