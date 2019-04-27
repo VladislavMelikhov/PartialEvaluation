@@ -165,6 +165,7 @@
     <ClInclude Include="Splitter.h" />
     <ClInclude Include="Traversal.h" />
     <ClInclude Include="TRecord.h" />
+    <ClInclude Include="TupleMaker.h" />
     <ClInclude Include="TuplePrinter.h" />
   </ItemGroup>
   <ItemGroup>
