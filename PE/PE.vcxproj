@@ -148,6 +148,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Converter.h" />
+    <ClInclude Include="ConverterAdapter.h" />
+    <ClInclude Include="Indexes.h" />
+    <ClInclude Include="IndexesFactory.h" />
     <ClInclude Include="Key.h" />
     <ClInclude Include="KFile.h" />
     <ClInclude Include="KRecord.h" />

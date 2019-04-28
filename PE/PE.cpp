@@ -18,6 +18,8 @@
 #include "TRecord.h"
 #include "Splitter.h"
 #include "Converter.h"
+#include "IndexesFactory.h"
+#include "TupleMaker.h"
 
 void testSingleFileIterator() {
 	std::cout << "Test single source: " << std::endl;
@@ -64,6 +66,20 @@ void testMultipleFilesIterator() {
 	}
 }
 
+void testTupleMaker() {
+
+	TupleMaker<std::string, int, double> tupleMaker = TupleMaker<std::string, int, double>();
+
+	std::string first;
+	int second;
+	double third;
+	std::tie(first, second, third) = tupleMaker.makeTuple("Hello; 23; 12.34", ';');
+
+	std::cout << first << std::endl;
+	std::cout << second << std::endl;
+	std::cout << third << std::endl;
+}
+
 int main()
 {
 
@@ -77,6 +93,14 @@ int main()
 
 	int x = Converter<int>().convert("56");
 	std::cout << x + 1;
+
+
+	Indexes<0, 1, 2> idx = Indexes<0, 1, 2>();
+
+	IndexesFactory<3>::IndexesType idx2 = Indexes<0, 1, 2>();
+
+
+	testTupleMaker();
 
 	//testMultipleFilesIterator();
 	//testSingleFileIterator();
