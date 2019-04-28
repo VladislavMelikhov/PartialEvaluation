@@ -20,6 +20,7 @@
 #include "Converter.h"
 #include "IndexesFactory.h"
 #include "TupleMaker.h"
+#include "TRecord.h"
 
 void testSingleFileIterator() {
 	std::cout << "Test single source: " << std::endl;
@@ -102,6 +103,15 @@ int main()
 
 	testTupleMaker();
 
+	TRecord<std::tuple<std::string, int, double>, Key<0, 1>> tRecord;
+	//std::cin >> tRecord;
+	//std::cout << tRecord;
+
+	std::ifstream fin("../PE/input/TRecords.txt");
+
+	while (fin >> tRecord) {
+		std::cout << tRecord << std::endl;
+	}
 	//testMultipleFilesIterator();
 	//testSingleFileIterator();
 
@@ -115,7 +125,7 @@ int main()
 
 	//typedef std::tuple<int, int, double> Tuple;
 	//Tuple tuple = std::make_tuple(4, 3, 1.1);
-	//printTuple(tuple);
+	//printTuple(std::cout, tuple);
 }
 
 // Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"

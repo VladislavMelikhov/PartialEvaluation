@@ -4,6 +4,7 @@
 template <typename T>
 class Converter {
 public:
+	//TODO: consider make this function static
 	T convert(std::string const& convertable);
 };
 
