@@ -20,7 +20,7 @@
 #include "Converter.h"
 #include "IndexesFactory.h"
 #include "TupleMaker.h"
-#include "TRecord.h"
+#include "TFile.h"
 
 void testSingleFileIterator() {
 	std::cout << "Test single source: " << std::endl;
@@ -103,15 +103,10 @@ int main()
 
 	testTupleMaker();
 
-	TRecord<std::tuple<std::string, int, double>, Key<0, 1>> tRecord;
-	//std::cin >> tRecord;
-	//std::cout << tRecord;
-
-	std::ifstream fin("../PE/input/TRecords.txt");
-
-	while (fin >> tRecord) {
-		std::cout << tRecord << std::endl;
-	}
+	typedef TFile<std::tuple<std::string, int, double>, Key<0, 1>> File;
+	File file = File("../PE/input/TRecords.txt");
+	std::cout << file << std::endl;
+	
 	//testMultipleFilesIterator();
 	//testSingleFileIterator();
 

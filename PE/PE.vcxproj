@@ -166,6 +166,7 @@
     <ClInclude Include="KPostIterator.h" />
     <ClInclude Include="KSumIterator.h" />
     <ClInclude Include="Splitter.h" />
+    <ClInclude Include="TFile.h" />
     <ClInclude Include="Traversal.h" />
     <ClInclude Include="TRecord.h" />
     <ClInclude Include="TupleMaker.h" />
