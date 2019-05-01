@@ -3,6 +3,7 @@
 #include "TupleMaker.h"
 #include "TuplePrinter.h"
 #include "Key.h"
+#include "TupleComparator.h"
 
 template <typename Tp = std::tuple<>, typename key = Key<>>
 class TRecord;
@@ -23,8 +24,12 @@ public:
 		return is;
 	}
 
-	int compare(TRecord<std::tuple<Types...>, Key>& record) {
+	int compare(TRecord<std::tuple<Types...>, Key> const& record) const {
+		return compareTuples(tuple, record.tuple) + 1;
+	}
 
+	std::tuple<Types...> const& getTuple() const {
+		return tuple;
 	}
 
 private:

@@ -22,7 +22,7 @@ public:
 	}
 
 	TRecord<Tuple, Key> const& getRecord() const {
-		return record;
+		return *record;
 	}
 
 	friend std::ostream& operator << (std::ostream& os, TVertex<Tuple, Key> const& vertex) {

@@ -21,8 +21,9 @@ void performTraversal(TFile<Tuple, Key> const& file) {
 	
 
 	std::size_t const height = std::tuple_size<Tuple>::value;
-	int sum[height];
-	for (std::size_t i = 0; i <= height; ++i) {
+	std::size_t const size = height + 1;
+	double sum[size];
+	for (std::size_t i = 0; i < size; ++i) {
 		sum[i] = 0;
 	}
 
@@ -56,12 +57,13 @@ void performTraversal(TFile<Tuple, Key> const& file) {
 
 		if (vertex.getLevel() == height) {
 			std::cout << vertex << std::endl;
-			sum[height] += vertex
+			sum[height] += std::get<2>(vertex
 				.getRecord()
-				.getValue();
+				.getTuple());
 
 			if (iterator == end) {
 				vertex.setLevel(height + 1);
+				k = height + 1;
 			}
 			else {
 				nextRecord = &(*(++iterator));
@@ -78,7 +80,7 @@ void performTraversal(TFile<Tuple, Key> const& file) {
 		}
 		else {
 			std::cout << "!";
-			std::cout << vertex;
+			//std::cout << vertex;
 			sum[vertex.getLevel()] += sum[vertex.getLevel() + 1];
 			std::cout << sum[vertex.getLevel() + 1] << std::endl;
 			sum[vertex.getLevel() + 1] = 0;
@@ -92,7 +94,7 @@ void performTraversal(TFile<Tuple, Key> const& file) {
 		}
 	}
 
-	for (std::size_t i = 0; i <= height; ++i) {
+	for (std::size_t i = 0; i < size; ++i) {
 		std::cout << i << " : " << sum[i] << std::endl;
 	}
 }

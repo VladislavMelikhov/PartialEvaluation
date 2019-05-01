@@ -114,8 +114,8 @@ int main()
 	File file = File("../PE/input/TRecords.txt");
 	std::cout << file << std::endl;
 
-	testTupleComparator();
-	//performTraversal(file);
+	//testTupleComparator();
+	performTraversal(file);
 	
 	//testMultipleFilesIterator();
 	//testSingleFileIterator();
@@ -126,7 +126,6 @@ int main()
 	//printTuple(t);
 	//std::cout << it.getResult() << ":)" << std::endl;
 
-	//performTraversal(records, 4);
 
 	//typedef std::tuple<int, int, double> Tuple;
 	//Tuple tuple = std::make_tuple(4, 3, 1.1);
