@@ -23,6 +23,10 @@ public:
 		return is;
 	}
 
+	int compare(TRecord<std::tuple<Types...>, Key>& record) {
+
+	}
+
 private:
 	std::tuple<Types...> tuple;
 

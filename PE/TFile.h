@@ -5,6 +5,9 @@ template <typename Tuple, typename Key>
 class TFile {
 
 public:
+
+	typedef TRecord<Tuple, Key> RecordType;
+
 	explicit TFile(std::string const& filepath) {
 		std::ifstream fin(filepath);
 		TRecord<Tuple, Key> record;
@@ -18,6 +21,10 @@ public:
 			os << record << std::endl;
 		}
 		return os;
+	}
+
+	std::vector<RecordType> const& getRecords() const {
+		return records;
 	}
 
 private:

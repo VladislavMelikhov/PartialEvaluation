@@ -169,8 +169,10 @@
     <ClInclude Include="TFile.h" />
     <ClInclude Include="Traversal.h" />
     <ClInclude Include="TRecord.h" />
+    <ClInclude Include="TupleComparator.h" />
     <ClInclude Include="TupleMaker.h" />
     <ClInclude Include="TuplePrinter.h" />
+    <ClInclude Include="TVertex.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="KFIle.cpp" />

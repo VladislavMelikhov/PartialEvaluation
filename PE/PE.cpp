@@ -21,6 +21,7 @@
 #include "IndexesFactory.h"
 #include "TupleMaker.h"
 #include "TFile.h"
+#include "TupleComparator.h"
 
 void testSingleFileIterator() {
 	std::cout << "Test single source: " << std::endl;
@@ -81,6 +82,12 @@ void testTupleMaker() {
 	std::cout << third << std::endl;
 }
 
+void testTupleComparator() {
+	std::tuple<std::string, int, double> first = { "1", 34, 34.23 };
+	std::tuple<std::string, int, double> second = { "1", 35, 12.12 };
+	std::cout << "Compare tuples: " << compareTuples(first, second) << std::endl;
+}
+
 int main()
 {
 
@@ -106,6 +113,9 @@ int main()
 	typedef TFile<std::tuple<std::string, int, double>, Key<0, 1>> File;
 	File file = File("../PE/input/TRecords.txt");
 	std::cout << file << std::endl;
+
+	testTupleComparator();
+	//performTraversal(file);
 	
 	//testMultipleFilesIterator();
 	//testSingleFileIterator();
