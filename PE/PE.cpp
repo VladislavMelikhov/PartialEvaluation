@@ -22,6 +22,7 @@
 #include "TupleMaker.h"
 #include "TFile.h"
 #include "TupleComparator.h"
+#include "LevelComparator.h"
 
 void testSingleFileIterator() {
 	std::cout << "Test single source: " << std::endl;
@@ -88,6 +89,15 @@ void testTupleComparator() {
 	std::cout << "Compare tuples: " << compareTuples(first, second) << std::endl;
 }
 
+void testLevelComparator() {
+	typedef TRecord<std::tuple<int, int, int, int>, Key<0, 3, 1>> Rec;
+	Rec first;
+	Rec second;
+	std::cin >> first;
+	std::cin >> second;
+	std::cout << "Compare records: " << first.compare(second) << std::endl;
+}
+
 int main()
 {
 
@@ -110,10 +120,11 @@ int main()
 
 	testTupleMaker();
 
-	typedef TFile<std::tuple<std::string, int, double>, Key<0, 1>> File;
-	File file = File("../PE/input/TRecords.txt");
+	typedef TFile<std::tuple<std::string, double, int, int>, Key<2, 0, 3>> File;
+	File file = File("../PE/input/TRecordsMixKey.txt");
 	std::cout << file << std::endl;
 
+	//testLevelComparator();
 	//testTupleComparator();
 	performTraversal(file);
 	

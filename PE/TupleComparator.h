@@ -9,8 +9,7 @@ private:
 	static int const index = std::tuple_size<Type>::value - N;
 
 public:
-	static int compare(Type const& first, 
-					   Type const& second) {
+	static int compare(Type const& first, Type const& second) {
 		
 		if (std::get<index>(first) != std::get<index>(second)) {
 			return index;
@@ -27,8 +26,7 @@ private:
 	static int const index = std::tuple_size<Type>::value - 1;
 
 public:
-	static int compare(Type const& first, 
-					   Type const& second) {
+	static int compare(Type const& first, Type const& second) {
 		
 		if (std::get<index>(first) != std::get<index>(second)) {
 			return index;
@@ -40,8 +38,7 @@ public:
 };
 
 template <typename ... Args>
-int compareTuples(std::tuple<Args...> const& first,
-				  std::tuple<Args...> const& second) {
+int compareTuples(std::tuple<Args...> const& first, std::tuple<Args...> const& second) {
 
 	return TupleComparator<std::tuple<Args...>, sizeof...(Args)>::compare(first, second);
 }

@@ -4,6 +4,7 @@
 #include "KStorage.h"
 #include "TFile.h"
 #include "TVertex.h"
+#include "Key.h"
 
 void performTraversal(
 	std::vector<KRecord> const& records,
@@ -16,11 +17,11 @@ void performTraversal(
 
 void performTraversal(KStorage const& storage);
 
-template <typename Tuple, typename Key>
-void performTraversal(TFile<Tuple, Key> const& file) {
+template <typename Tuple, int ... Indexes>
+void performTraversal(TFile<Tuple, Key<Indexes...>> const& file) {
 	
 
-	std::size_t const height = std::tuple_size<Tuple>::value;
+	std::size_t const height = sizeof...(Indexes) + 1;
 	std::size_t const size = height + 1;
 	double sum[size];
 	for (std::size_t i = 0; i < size; ++i) {
@@ -28,9 +29,9 @@ void performTraversal(TFile<Tuple, Key> const& file) {
 	}
 
 
-	typedef TVertex<Tuple, Key> Vertex;
+	typedef TVertex<Tuple, Key<Indexes...>> Vertex;
 	typedef std::stack<Vertex> VertexesStack;
-	typedef TFile<Tuple, Key>::RecordType Record;
+	typedef TFile<Tuple, Key<Indexes...>>::RecordType Record;
 	
 	std::vector<Record> records = file.getRecords();
 
@@ -57,7 +58,7 @@ void performTraversal(TFile<Tuple, Key> const& file) {
 
 		if (vertex.getLevel() == height) {
 			std::cout << vertex << std::endl;
-			sum[height] += std::get<2>(vertex
+			sum[height] += std::get<1>(vertex
 				.getRecord()
 				.getTuple());
 

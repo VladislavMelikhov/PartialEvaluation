@@ -162,6 +162,8 @@
     <ClInclude Include="KTRecord.h" />
     <ClInclude Include="KTVertex.h" />
     <ClInclude Include="KVertex.h" />
+    <ClInclude Include="Level.h" />
+    <ClInclude Include="LevelComparator.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="KPostIterator.h" />
     <ClInclude Include="KSumIterator.h" />
