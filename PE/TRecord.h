@@ -3,20 +3,23 @@
 #include "TupleMaker.h"
 #include "TuplePrinter.h"
 #include "Key.h"
+#include "Level.h"
 #include "LevelComparator.h"
 
-template <typename Tp = std::tuple<>, typename key = Key<>>
+template <typename Tuple, typename Key, typename Level>
 class TRecord;
 
-template <typename ... Types, int ... Indexes>
-class TRecord<std::tuple<Types...>, Key<Indexes...>> {
-	
+template <typename ... Types, int ... Indexes, int ... Numbers>
+class TRecord<std::tuple<Types...>, Key<Indexes...>, Level<Numbers...>> {
+
+	typedef TRecord<std::tuple<Types...>, Key<Indexes...>, Level<Numbers...>> Record;
+
 public:
-	friend std::ostream& operator << (std::ostream& os, TRecord<std::tuple<Types...>, Key<Indexes...>> const& record) {
+	friend std::ostream& operator << (std::ostream& os, Record const& record) {
 		return printTuple(os, record.tuple);
 	}
 
-	friend std::istream& operator >> (std::istream& is, TRecord<std::tuple<Types...>, Key<Indexes...>>& record) {
+	friend std::istream& operator >> (std::istream& is, Record& record) {
 		std::string source;
 		if (is >> source) {
 			record.tuple = TupleMaker<Types...>().makeTuple(trimBraces(source), ';');
@@ -24,8 +27,12 @@ public:
 		return is;
 	}
 
-	int compare(TRecord<std::tuple<Types...>, Key<Indexes...>> const& record) const {
-		return LevelComparator<std::tuple<Types...>, sizeof...(Indexes), Key<Indexes...>>::compare(tuple, record.tuple) + 1;
+	int compare(Record const& record) const {
+		return LevelComparator<
+			std::tuple<Types...>, sizeof...(Indexes), sizeof...(Numbers),
+			Key<Indexes...>,
+			Level<Numbers...>
+		>::compare(tuple, record.tuple) + 1;
 	}
 
 	std::tuple<Types...> const& getTuple() const {

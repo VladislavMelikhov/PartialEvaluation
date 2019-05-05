@@ -90,7 +90,7 @@ void testTupleComparator() {
 }
 
 void testLevelComparator() {
-	typedef TRecord<std::tuple<int, int, int, int>, Key<0, 3, 1>> Rec;
+	typedef TRecord<std::tuple<int, int, int, int>, Key<0, 1, 2, 3>, Level<1, 3>> Rec;
 	Rec first;
 	Rec second;
 	std::cin >> first;
@@ -101,26 +101,26 @@ void testLevelComparator() {
 int main()
 {
 
-	Key<1, 2, 3> key = Key<1, 2, 3>();
-	TRecord<std::tuple<std::string, int, int, int>, Key<1, 2, 3>>;
+	//Key<1, 2, 3> key = Key<1, 2, 3>();
+	//TRecord<std::tuple<std::string, int, int, int>, Key<1, 2, 3>>;
 
-	Strings strings = Splitter().split("Hello, world, 2019", ',');
-	for (std::string const& string : strings) {
-		std::cout << string << " ";
-	}
+	//Strings strings = Splitter().split("Hello, world, 2019", ',');
+	//for (std::string const& string : strings) {
+	//	std::cout << string << " ";
+	//}
 
-	int x = Converter<int>().convert("56");
-	std::cout << x + 1;
-
-
-	Indexes<0, 1, 2> idx = Indexes<0, 1, 2>();
-
-	IndexesFactory<3>::IndexesType idx2 = Indexes<0, 1, 2>();
+	//int x = Converter<int>().convert("56");
+	//std::cout << x + 1;
 
 
-	testTupleMaker();
+	//Indexes<0, 1, 2> idx = Indexes<0, 1, 2>();
 
-	typedef TFile<std::tuple<std::string, double, int, int>, Key<2, 0, 3>> File;
+	//IndexesFactory<3>::IndexesType idx2 = Indexes<0, 1, 2>();
+
+
+	//testTupleMaker();
+
+	typedef TFile<std::tuple<std::string, double, int, int>, Key<2, 0, 3>, Level<0, 2>> File;
 	File file = File("../PE/input/TRecordsMixKey.txt");
 	std::cout << file << std::endl;
 

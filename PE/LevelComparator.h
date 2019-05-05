@@ -1,39 +1,135 @@
 #pragma once
 #include "Key.h"
+#include "Level.h"
 
-template <typename Type, int KeySize, typename Key>
+template <
+	typename Type, int KeySize, int LevelsCount, 
+	typename Key, 
+	typename Level
+>
 class LevelComparator;
 
-template <typename Type, int KeySize, int Index, int ... Indexes>
-class LevelComparator<Type, KeySize, Key<Index, Indexes...>> {
+template <
+	typename Type, int KeySize, int LevelsCount, 
+	int Index, int ... Indexes, 
+	int Number, int ... Numbers
+>
+class LevelComparator<
+	Type, KeySize, LevelsCount,
+	Key<Index, Indexes...>,
+	Level<Number, Numbers...>
+> {
 private:
 	static int const index = KeySize - sizeof...(Indexes) - 1;
+	static int const level = LevelsCount - sizeof...(Numbers) - 1;
 
 public:
 	static int compare(Type const& first, Type const& second) {
 		
 		if (std::get<Index>(first) != std::get<Index>(second)) {
-			return index;
+			return level;
 		}
 		else {
-			return LevelComparator<Type, KeySize, Key<Indexes...>>::compare(first, second);
+			if (index == Number) {
+				return LevelComparator<
+					Type, KeySize, LevelsCount, 
+					Key<Indexes...>, 
+					Level<Numbers...>
+				>::compare(first, second);
+			}
+			else {
+				return LevelComparator<
+					Type, KeySize, LevelsCount,
+					Key<Indexes...>,
+					Level<Number, Numbers...>
+				>::compare(first, second);
+			}
 		}
 	}
 };
 
-template <typename Type, int KeySize, int Index>
-class LevelComparator<Type, KeySize, Key<Index>> {
+template <
+	typename Type, int KeySize, int LevelsCount,
+	int Index, int ... Indexes,
+	int Number
+>
+class LevelComparator<
+	Type, KeySize, LevelsCount,
+	Key<Index, Indexes...>,
+	Level<Number>
+> {
 private:
-	static int const index = KeySize - 1;
+	static int const index = KeySize - sizeof...(Indexes) - 1;
+	static int const level = LevelsCount - 1;
 
 public:
 	static int compare(Type const& first, Type const& second) {
 
 		if (std::get<Index>(first) != std::get<Index>(second)) {
-			return index;
+			return level;
 		}
 		else {
-			return index + 1;
+			return LevelComparator<
+				Type, KeySize, LevelsCount,
+				Key<Indexes...>,
+				Level<Number>
+			>::compare(first, second);
+		}
+	}
+};
+
+template <
+	typename Type, int KeySize, int LevelsCount,
+	int Index,
+	int Number, int ... Numbers
+>
+class LevelComparator<
+	Type, KeySize, LevelsCount,
+	Key<Index>,
+	Level<Number, Numbers...>
+> {
+private:
+	static int const index = KeySize - 1;
+	static int const level = LevelsCount - sizeof...(Numbers) - 1;
+
+public:
+	static int compare(Type const& first, Type const& second) {
+
+		if (std::get<Index>(first) != std::get<Index>(second)) {
+			return level;
+		}
+		else {
+			return LevelComparator<
+				Type, KeySize, LevelsCount,
+				Key<Index>,
+				Level<Numbers...>
+			>::compare(first, second);
+		}
+	}
+};
+
+template <
+	typename Type, int KeySize, int LevelsCount,
+	int Index,
+	int Number
+>
+class LevelComparator<
+	Type, KeySize, LevelsCount,
+	Key<Index>,
+	Level<Number>
+> {
+private:
+	static int const index = KeySize - 1;
+	static int const level = LevelsCount - 1;
+
+public:
+	static int compare(Type const& first, Type const& second) {
+
+		if (std::get<Index>(first) != std::get<Index>(second)) {
+			return level;
+		}
+		else {
+			return level + 1;
 		}
 	}
 };

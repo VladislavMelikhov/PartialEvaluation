@@ -3,8 +3,11 @@
 #include <iostream>
 #include "TRecord.h"
 
-template <typename Tuple, typename Key>
+template <typename Tuple, typename Key, typename Level>
 class TVertex {
+
+	typedef TRecord<Tuple, Key, Level> Record;
+
 public:
 
 	TVertex() : level(0), record(nullptr) {};
@@ -17,15 +20,15 @@ public:
 		return level;
 	}
 
-	void setRecord(TRecord<Tuple, Key> const* value) {
+	void setRecord(Record const* value) {
 		record = value;
 	}
 
-	TRecord<Tuple, Key> const& getRecord() const {
+	Record const& getRecord() const {
 		return *record;
 	}
 
-	friend std::ostream& operator << (std::ostream& os, TVertex<Tuple, Key> const& vertex) {
+	friend std::ostream& operator << (std::ostream& os, TVertex<Tuple, Key, Level> const& vertex) {
 		os << "(" << vertex.level;
 		if (vertex.record != nullptr) {
 			os << ", " << *vertex.record;
@@ -36,5 +39,5 @@ public:
 
 private:
 	int level;
-	TRecord<Tuple, Key> const* record;
+	Record const* record;
 };

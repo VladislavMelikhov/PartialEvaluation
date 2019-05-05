@@ -17,11 +17,11 @@ void performTraversal(
 
 void performTraversal(KStorage const& storage);
 
-template <typename Tuple, int ... Indexes>
-void performTraversal(TFile<Tuple, Key<Indexes...>> const& file) {
+template <typename Tuple, int ... Indexes, int ... Numbers>
+void performTraversal(TFile<Tuple, Key<Indexes...>, Level<Numbers...>> const& file) {
 	
 
-	std::size_t const height = sizeof...(Indexes) + 1;
+	std::size_t const height = sizeof...(Numbers) + 1;
 	std::size_t const size = height + 1;
 	double sum[size];
 	for (std::size_t i = 0; i < size; ++i) {
@@ -29,9 +29,9 @@ void performTraversal(TFile<Tuple, Key<Indexes...>> const& file) {
 	}
 
 
-	typedef TVertex<Tuple, Key<Indexes...>> Vertex;
+	typedef TVertex<Tuple, Key<Indexes...>, Level<Numbers...>> Vertex;
 	typedef std::stack<Vertex> VertexesStack;
-	typedef TFile<Tuple, Key<Indexes...>>::RecordType Record;
+	typedef TFile<Tuple, Key<Indexes...>, Level<Numbers...>>::RecordType Record;
 	
 	std::vector<Record> records = file.getRecords();
 
