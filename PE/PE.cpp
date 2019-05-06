@@ -121,11 +121,11 @@ int main()
 
 	//testTupleMaker();
 
-	typedef TFile<std::tuple<std::string, double, int, int>, Key<2, 0, 3>, Level<0, 1, 2>> File;
+	typedef TFile<std::tuple<std::string, double, int, int>, Key<2, 0, 3>, Level<0, 2>> File;
 	File file = File("../PE/input/TRecordsMixKey.txt");
 	std::cout << file << std::endl;
 
-	typedef File::IteratorType FileIterator;
+	typedef File::const_iterator FileIterator;
 	/*FileIterator& it = file.begin();
 	FileIterator const& end = file.end();
 
@@ -139,19 +139,22 @@ int main()
 		sum[i] = 0;
 	}
 
-	for (FileIterator it = file.begin(); it != file.end(); ++it) {
+	for (FileIterator it = file.cbegin(); it != file.cend(); ++it) {
 		
-		int level = it.getLevel();
+		int const level = it.getLevel();
 		std::cout << level << " ";
-		
+		decltype(auto) value = *it;
 
 		if (it.isLeaf()) {
-
-			printTuple(std::cout, *it) << std::endl;
-			
+			printTuple(std::cout, value) << std::endl;
+			sum[level] += std::get<1>(value);
+			std::get<1>(value);
 		}
 		else {
-			std::cout << std::endl;
+			int const nextLevel = level + 1;
+			sum[level] += sum[nextLevel];
+			std::cout << sum[nextLevel] << std::endl;
+			sum[nextLevel] = 0;
 		}
 	}
 

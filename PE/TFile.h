@@ -9,7 +9,7 @@ public:
 
 	typedef TRecord<Tuple, Key, Level> RecordType;
 	typedef std::vector<RecordType> Records;
-	typedef FileIterator<Tuple, Key, Level, typename Records::const_iterator> IteratorType;
+	typedef FileIterator<const Tuple, Key, Level, typename Records::const_iterator> const_iterator;
 
 	explicit TFile(std::string const& filepath) {
 		std::ifstream fin(filepath);
@@ -30,12 +30,12 @@ public:
 		return records;
 	}
 
-	IteratorType begin() {
-		return ++IteratorType(records.begin(), records.end());
+	const_iterator cbegin() {
+		return ++const_iterator(records.begin(), records.end());
 	}
 
-	IteratorType end() {
-		return IteratorType(records.begin(), records.end());
+	const_iterator cend() {
+		return const_iterator(records.begin(), records.end());
 	}
 
 private:
