@@ -13,15 +13,13 @@ class FileIterator;
 template <typename Tuple, int ... Indexes, int ... Numbers, typename Iterator>
 class FileIterator<Tuple, Key<Indexes...>, Level<Numbers...>, Iterator> : public std::iterator<std::forward_iterator_tag, std::remove_cv_t<Tuple>, std::ptrdiff_t, Tuple*, Tuple&>
 {
-private:
-
+public:
 	static std::size_t const treeHeight = sizeof...(Numbers) + 1;
 
+private:
 	typedef TVertex<Tuple, Key<Indexes...>, Level<Numbers...>> Vertex;
 	typedef TRecord<Tuple, Key<Indexes...>, Level<Numbers...>> Record;
 	typedef std::stack<Vertex> VertexesStack;
-
-	
 
 	Iterator iterator;
 	Iterator const end;
@@ -30,6 +28,8 @@ private:
 	Record const* currentRecord;
 	Record const* nextRecord;
 	int branchHeight;
+	int levelValue;
+	bool isLeafValue;
 
 	void onPush(int const& level)
 	{
@@ -53,24 +53,28 @@ private:
 		return first.compare(second);
 	}
 
-	void onNext(Record const& record) const {
-		std::cout << "On next " << record << std::endl;
+	void onNext(int const& level, Record const& record) {
+		isLeafValue = true;
+		levelValue = level;
 	}
 
-	void onBranch(int const& level, Record const& record) const {
-		std::cout << "On branch " << record << std::endl;
+	void onBranch(int const& level, Record const& record) {
+		isLeafValue = false;
+		levelValue = level;
 	}
 
 public:
 
-	FileIterator(Iterator const& begin, Iterator const& end) : 
+	FileIterator(Iterator const& begin, Iterator const& end) :
 		iterator(begin),
 		end(end),
 		vertex(Vertex()),
 		stack(VertexesStack()),
 		currentRecord(&(*iterator)),
 		nextRecord(nullptr),
-		branchHeight(treeHeight) {}
+		branchHeight(treeHeight),
+		levelValue(0),
+		isLeafValue(false) {}
 
 	FileIterator& operator++() {
 		while (true) {
@@ -89,7 +93,7 @@ public:
 
 			if (vertex.getLevel() == treeHeight) {
 
-				onNext(vertex.getRecord());
+				onNext(vertex.getLevel(), vertex.getRecord());
 
 				if (isEndOfSource()) {
 					vertex.setLevel(treeHeight + 1);
@@ -138,6 +142,20 @@ public:
 		}
 	}
 
+	Tuple const& operator* () const {
+		return vertex
+			.getRecord()
+			.getTuple();
+	}
+
+	//Extended interface
+	bool isLeaf() const {
+		return isLeafValue;
+	}
+
+	int getLevel() const {
+		return levelValue;
+	}
 };
 /*
 void performTraversal(TFile<Tuple, Key<Indexes...>, Level<Numbers...>> const& file) {

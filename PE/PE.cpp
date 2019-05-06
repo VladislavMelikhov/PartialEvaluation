@@ -121,7 +121,7 @@ int main()
 
 	//testTupleMaker();
 
-	typedef TFile<std::tuple<std::string, double, int, int>, Key<2, 0, 3>, Level<0, 2>> File;
+	typedef TFile<std::tuple<std::string, double, int, int>, Key<2, 0, 3>, Level<0, 1, 2>> File;
 	File file = File("../PE/input/TRecordsMixKey.txt");
 	std::cout << file << std::endl;
 
@@ -133,8 +133,30 @@ int main()
 		++it;
 	}*/
 
-	for (FileIterator it = file.begin(); it != file.end(); ++it) {
+	std::size_t const size = FileIterator::treeHeight + 1;
+	double sum[size];
+	for (std::size_t i = 0; i < size; ++i) {
+		sum[i] = 0;
+	}
 
+	for (FileIterator it = file.begin(); it != file.end(); ++it) {
+		
+		int level = it.getLevel();
+		std::cout << level << " ";
+		
+
+		if (it.isLeaf()) {
+
+			printTuple(std::cout, *it) << std::endl;
+			
+		}
+		else {
+			std::cout << std::endl;
+		}
+	}
+
+	for (std::size_t i = 0; i < size; ++i) {
+		std::cout << i << " : " << sum[i] << std::endl;
 	}
 
 	//testLevelComparator();
