@@ -5,6 +5,7 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
+#include <algorithm>
 #include <iostream>
 #include "KRecord.h"
 #include "Traversal.h"
@@ -124,10 +125,23 @@ int main()
 	File file = File("../PE/input/TRecordsMixKey.txt");
 	std::cout << file << std::endl;
 
+	typedef File::IteratorType FileIterator;
+	/*FileIterator& it = file.begin();
+	FileIterator const& end = file.end();
+
+	while (it != end) {
+		++it;
+	}*/
+
+	for (FileIterator it = file.begin(); it != file.end(); ++it) {
+
+	}
+
 	//testLevelComparator();
 	//testTupleComparator();
-	performTraversal(file);
+	//performTraversal(file);
 	
+	//std::binary_search
 	//testMultipleFilesIterator();
 	//testSingleFileIterator();
 

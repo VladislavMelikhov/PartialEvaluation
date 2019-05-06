@@ -1,5 +1,6 @@
 #pragma once
 #include "TRecord.h"
+#include "FileIterator.h"
 
 template <typename Tuple, typename Key, typename Level>
 class TFile {
@@ -7,6 +8,8 @@ class TFile {
 public:
 
 	typedef TRecord<Tuple, Key, Level> RecordType;
+	typedef std::vector<RecordType> Records;
+	typedef FileIterator<Tuple, Key, Level, typename Records::const_iterator> IteratorType;
 
 	explicit TFile(std::string const& filepath) {
 		std::ifstream fin(filepath);
@@ -23,10 +26,18 @@ public:
 		return os;
 	}
 
-	std::vector<RecordType> const& getRecords() const {
+	Records const& getRecords() const {
 		return records;
 	}
 
+	IteratorType begin() {
+		return ++IteratorType(records.begin(), records.end());
+	}
+
+	IteratorType end() {
+		return IteratorType(records.begin(), records.end());
+	}
+
 private:
-	std::vector<RecordType> records;
+	Records records;
 };

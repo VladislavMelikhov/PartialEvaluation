@@ -38,7 +38,7 @@ void performTraversal(TFile<Tuple, Key<Indexes...>, Level<Numbers...>> const& fi
 	Vertex vertex = Vertex();
 	VertexesStack stack = VertexesStack();
 	std::vector<Record>::const_iterator iterator = records.begin();
-	std::vector<Record>::const_iterator end = --records.end();
+	std::vector<Record>::const_iterator end = records.end();
 
 	Record const* currentRecord = &(*iterator);
 	Record const* nextRecord = nullptr;
