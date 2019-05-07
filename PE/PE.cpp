@@ -141,13 +141,15 @@ int main()
 	typedef TFile<std::tuple<int, int>, Key<0>, Level<0>> File1;
 	typedef TFile<std::tuple<int, int, int>, Key<0, 1>, Level<0, 1>> File2;
 	typedef TFile<std::tuple<int, int, int, int>, Key<0, 1, 2>, Level<0, 1, 2>> File3;
-	typedef TStorage<File1, File2, File3> Storage;
+	typedef TFile<std::tuple<int, int, int, int, int>, Key<0, 1, 2, 3>, Level<0, 1, 2, 3>> File4;
+	typedef TStorage<File1, File2, File3, File4> Storage;
 
 	File1 f1 = File1("../PE/input/TFile1.txt");
 	File2 f2 = File2("../PE/input/TFile2.txt");
 	File3 f3 = File3("../PE/input/TFile3.txt");
+	File4 f4 = File4("../PE/input/TFile4.txt");
 
-	Storage storage = Storage(std::make_tuple(f1, f2, f3));
+	Storage storage = Storage(std::make_tuple(f1, f2, f3, f4));
 	performTraversal(storage);
 
 	//Key<1, 2, 3> key = Key<1, 2, 3>();
