@@ -26,6 +26,8 @@ int const& min(int const& a, int const& b) {
 
 int KTRecord::compare(KTRecord const& other) const
 {
+	//TODO: debug log
+	//std::cout << "Compare: " << n << " " << other.n << std::endl;
 	int const min_n = min(n, other.n);
 	for (int i = 0; i < min_n; ++i) {
 		if (keys[i] != other.keys[i]) {

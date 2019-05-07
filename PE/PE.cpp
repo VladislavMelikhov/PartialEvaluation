@@ -21,7 +21,7 @@
 #include "Converter.h"
 #include "IndexesFactory.h"
 #include "TupleMaker.h"
-#include "TFile.h"
+#include "TStorage.h"
 #include "TupleComparator.h"
 #include "LevelComparator.h"
 
@@ -99,39 +99,12 @@ void testLevelComparator() {
 	std::cout << "Compare records: " << first.compare(second) << std::endl;
 }
 
-int main()
-{
-
-	//Key<1, 2, 3> key = Key<1, 2, 3>();
-	//TRecord<std::tuple<std::string, int, int, int>, Key<1, 2, 3>>;
-
-	//Strings strings = Splitter().split("Hello, world, 2019", ',');
-	//for (std::string const& string : strings) {
-	//	std::cout << string << " ";
-	//}
-
-	//int x = Converter<int>().convert("56");
-	//std::cout << x + 1;
-
-
-	//Indexes<0, 1, 2> idx = Indexes<0, 1, 2>();
-
-	//IndexesFactory<3>::IndexesType idx2 = Indexes<0, 1, 2>();
-
-
-	//testTupleMaker();
-
+void testTemplateSingleFileIterator() {
 	typedef TFile<std::tuple<std::string, double, int, int>, Key<2, 0, 3>, Level<0, 2>> File;
 	File file = File("../PE/input/TRecordsMixKey.txt");
 	std::cout << file << std::endl;
 
 	typedef File::const_iterator FileIterator;
-	/*FileIterator& it = file.begin();
-	FileIterator const& end = file.end();
-
-	while (it != end) {
-		++it;
-	}*/
 
 	std::size_t const size = FileIterator::treeHeight + 1;
 	double sum[size];
@@ -140,7 +113,7 @@ int main()
 	}
 
 	for (FileIterator it = file.cbegin(); it != file.cend(); ++it) {
-		
+
 		int const level = it.getLevel();
 		std::cout << level << " ";
 		decltype(auto) value = *it;
@@ -161,6 +134,42 @@ int main()
 	for (std::size_t i = 0; i < size; ++i) {
 		std::cout << i << " : " << sum[i] << std::endl;
 	}
+}
+
+int main()
+{
+	typedef TFile<std::tuple<int, int>, Key<0>, Level<0>> File1;
+	typedef TFile<std::tuple<int, int, int>, Key<0, 1>, Level<0, 1>> File2;
+	typedef TFile<std::tuple<int, int, int, int>, Key<0, 1, 2>, Level<0, 1, 2>> File3;
+	typedef TStorage<File1, File2, File3> Storage;
+
+	File1 f1 = File1("../PE/input/TFile1.txt");
+	File2 f2 = File2("../PE/input/TFile2.txt");
+	File3 f3 = File3("../PE/input/TFile3.txt");
+
+	Storage storage = Storage(std::make_tuple(f1, f2, f3));
+	performTraversal(storage);
+
+	//Key<1, 2, 3> key = Key<1, 2, 3>();
+	//TRecord<std::tuple<std::string, int, int, int>, Key<1, 2, 3>>;
+
+	//Strings strings = Splitter().split("Hello, world, 2019", ',');
+	//for (std::string const& string : strings) {
+	//	std::cout << string << " ";
+	//}
+
+	//int x = Converter<int>().convert("56");
+	//std::cout << x + 1;
+
+
+	//Indexes<0, 1, 2> idx = Indexes<0, 1, 2>();
+
+	//IndexesFactory<3>::IndexesType idx2 = Indexes<0, 1, 2>();
+
+
+	//testTupleMaker();
+
+	
 
 	//testLevelComparator();
 	//testTupleComparator();

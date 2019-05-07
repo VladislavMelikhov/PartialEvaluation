@@ -172,6 +172,7 @@
     <ClInclude Include="TFile.h" />
     <ClInclude Include="Traversal.h" />
     <ClInclude Include="TRecord.h" />
+    <ClInclude Include="TStorage.h" />
     <ClInclude Include="TupleComparator.h" />
     <ClInclude Include="TupleMaker.h" />
     <ClInclude Include="TuplePrinter.h" />
