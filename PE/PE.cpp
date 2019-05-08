@@ -136,21 +136,38 @@ void testTemplateSingleFileIterator() {
 	}
 }
 
-int main()
-{
+void testTemplateMultipleFilesIterator() {
 	typedef TFile<std::tuple<int, int>, Key<0>, Level<0>> File1;
 	typedef TFile<std::tuple<int, int, int>, Key<0, 1>, Level<0, 1>> File2;
 	typedef TFile<std::tuple<int, int, int, int>, Key<0, 1, 2>, Level<0, 1, 2>> File3;
-	typedef TFile<std::tuple<int, int, int, int, int>, Key<0, 1, 2, 3>, Level<0, 1, 2, 3>> File4;
-	typedef TStorage<File1, File2, File3, File4> Storage;
+	//typedef TFile<std::tuple<int, int, int, int, int>, Key<0, 1, 2, 3>, Level<0, 1, 2, 3>> File4;
+	typedef TStorage<File1, File2, File3> Storage;
 
 	File1 f1 = File1("../PE/input/TFile1.txt");
 	File2 f2 = File2("../PE/input/TFile2.txt");
 	File3 f3 = File3("../PE/input/TFile3.txt");
-	File4 f4 = File4("../PE/input/TFile4.txt");
+	//File4 f4 = File4("../PE/input/TFile4.txt");
 
-	Storage storage = Storage(std::make_tuple(f1, f2, f3, f4));
-	performTraversal(storage);
+	Storage storage = Storage(std::make_tuple(f1, f2, f3));
+	
+	//performTraversal(storage);
+	//decltype(auto) it = storage.cbegin();
+	//printTuple(std::cout, *it);
+
+	for (decltype(auto) it = storage.cbegin(); it != storage.cend(); ++it) {
+		std::cout << it.getLevel() << " ";
+		if (it.isLeaf()) {
+			printTuple(std::cout, *it);
+		}
+		std::cout << std::endl;
+	}
+	
+	
+}
+
+int main()
+{
+	testTemplateMultipleFilesIterator();
 
 	//Key<1, 2, 3> key = Key<1, 2, 3>();
 	//TRecord<std::tuple<std::string, int, int, int>, Key<1, 2, 3>>;

@@ -168,7 +168,13 @@
     <ClInclude Include="pch.h" />
     <ClInclude Include="KPostIterator.h" />
     <ClInclude Include="KSumIterator.h" />
+    <ClInclude Include="RecordsIteratorsFactory.h" />
     <ClInclude Include="Splitter.h" />
+    <ClInclude Include="StackMaker.h" />
+    <ClInclude Include="StackUtils.h" />
+    <ClInclude Include="StackWrapper.h" />
+    <ClInclude Include="StackWrapperMaker.h" />
+    <ClInclude Include="StorageIterator.h" />
     <ClInclude Include="TFile.h" />
     <ClInclude Include="Traversal.h" />
     <ClInclude Include="TRecord.h" />
@@ -177,6 +183,7 @@
     <ClInclude Include="TupleMaker.h" />
     <ClInclude Include="TuplePrinter.h" />
     <ClInclude Include="TVertex.h" />
+    <ClInclude Include="VertexMaker.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="KFIle.cpp" />
