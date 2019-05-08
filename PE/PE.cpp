@@ -24,6 +24,7 @@
 #include "TStorage.h"
 #include "TupleComparator.h"
 #include "LevelComparator.h"
+#include "TupleConverter.h"
 
 void testSingleFileIterator() {
 	std::cout << "Test single source: " << std::endl;
@@ -154,15 +155,22 @@ void testTemplateMultipleFilesIterator() {
 	//decltype(auto) it = storage.cbegin();
 	//printTuple(std::cout, *it);
 
+	File1::Tuple record1;
+	File2::Tuple record2;
+	File3::Tuple record3;
+
 	for (decltype(auto) it = storage.cbegin(); it != storage.cend(); ++it) {
-		std::cout << it.getLevel() << " ";
+		//std::cout << it.getLevel() << " ";
 		if (it.isLeaf()) {
-			printTuple(std::cout, *it);
+			//printTuple(std::cout, *it);
+			std::tie(record1, record2, record3) = convertVertexesToTuples(*it);
+			std::cout << "("
+				<< std::get<1>(record1) << ", "
+				<< std::get<2>(record2) << ", "
+				<< std::get<3>(record3) << ")";
+			std::cout << std::endl;
 		}
-		std::cout << std::endl;
 	}
-	
-	
 }
 
 int main()

@@ -12,9 +12,13 @@ class TRecord;
 template <typename ... Types, int ... Indexes, int ... Numbers>
 class TRecord<std::tuple<Types...>, Key<Indexes...>, Level<Numbers...>> {
 
+
 	typedef TRecord<std::tuple<Types...>, Key<Indexes...>, Level<Numbers...>> Record;
 
 public:
+
+	typedef std::tuple<Types...> TupleType;
+
 	friend std::ostream& operator << (std::ostream& os, Record const& record) {
 		return printTuple(os, record.tuple);
 	}
